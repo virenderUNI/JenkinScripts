@@ -154,40 +154,40 @@ try:
 	outputFile.write("TenantCode,SaleOrderCode,SaleOrderItemCode,FacilityCode,Created\n")
 
 	# For specified tenant only
-		try:
-			# Get mongodbUri of tenant 			
-			mongoUri = []
-			mongoUri = getTenantSpecificMongoUri(tenantCode)
+	try:
+		# Get mongodbUri of tenant 			
+		mongoUri = []
+		mongoUri = getTenantSpecificMongoUri(tenantCode)
 
-			if (len(mongoUri) == 2):
-				# Create mongo client
-				myclient = getClient(mongoUri[0], mongoUri[1])
-				mydb = myclient[tenantCode]
-				mycol = mydb[ufColName]
+		if (len(mongoUri) == 2):
+			# Create mongo client
+			myclient = getClient(mongoUri[0], mongoUri[1])
+			mydb = myclient[tenantCode]
+			mycol = mydb[ufColName]
 
-				# Get ufData
-				query = {
+			# Get ufData
+			query = {
 					"tenantCode" : tenantCode,
 					"created" : created,
 					"summary" : summary,
-				}
-				projection = {
-					"saleOrderItemCode":1,
-					"facilityAllocatorData.facilityCode":1,
-					"saleOrderCode":1,
-					"created":1
-				}
+			}
+			projection = {
+				"saleOrderItemCode":1,
+				"facilityAllocatorData.facilityCode":1,
+				"saleOrderCode":1,
+				"created":1
+			}
 
-				ufData = list(mycol.find(query, projection)) 			
+			ufData = list(mycol.find(query, projection)) 			
 
-				# Get Details
-				# details = getDetails(ufData, tenantCode, str(ufSummaryDateStr))
-				print(ufData)
-				outputFile.write(ufData + "\n")
+			# Get Details
+			# details = getDetails(ufData, tenantCode, str(ufSummaryDateStr))
+			print(ufData)
+			outputFile.write(ufData + "\n")
 
-		except Exception as e:
-			print("Exception while calculating uf data for tenant: " + tenant['code'])
-			print(e)
+	except Exception as e:
+		print("Exception while calculating uf data for tenant: " + tenant['code'])
+		print(e)
 
 except Exception as e:
 	print(e)
