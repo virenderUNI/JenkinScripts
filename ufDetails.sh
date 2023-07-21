@@ -8,7 +8,7 @@ python3 ufDetails.py "$TenantCode" "$DetailsDated" "$Summary"
 
 # echo ${yesterday_date}
 
-temp=/tmp/uf-summary-
+temp=/tmp/uf-soiDetails-
 temp+=${DetailsDated}
 
 echo ${temp}

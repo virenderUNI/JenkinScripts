@@ -119,7 +119,7 @@ try:
 	print("ufSummaryDate: " + str(ufSummaryDate))
 
 	# Create output file
-	outputFileName = "/tmp/uf-soi-" + ufSummaryDateStr + ".csv"
+	outputFileName = "/tmp/uf-soiDetails-" + detailsDated + ".csv"
 	outputFile = open(outputFileName, "w")
 	outputFile.write("TenantCode,SaleOrderCode,SaleOrderItemCode,FacilityCode,Created\n")
 
