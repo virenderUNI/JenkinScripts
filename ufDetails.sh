@@ -6,6 +6,8 @@ python3 ufDetails.py "$TenantCode" "$DetailsDated" "$Summary"
 
 yesterday_date=$(date -d "$DetailsDated" +'%d-%b-%Y')
 
+echo ${yesterday_date}
+
 temp=/tmp/uf-summary-
 temp+=${yesterday_date}
 
