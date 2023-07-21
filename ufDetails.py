@@ -42,7 +42,7 @@ def ifDetailsExists(ufData):
 
 # 	return ""
 
-def getDetails(ufData, tenantCode, date):
+def getDetails(ufData, tenantCode):
 	# totalUFCount = len(ufData)
 	# totalSoiCount = int(getTotalSOICount(tenantCode))
 
@@ -163,7 +163,7 @@ try:
 			ufData = list(mycol.find(query, projection)) 			
 
 			# Get Details
-			details = getDetails(ufData, tenantCode, str(ufSummaryDateStr))
+			details = getDetails(ufData, tenantCode)
 			print("------------")
 			print(details)
 			print("------------")
