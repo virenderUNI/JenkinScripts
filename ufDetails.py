@@ -109,13 +109,13 @@ try:
 	midnightDateTime_tomorrow = midnightDateTime_today + datetime.timedelta(days = 1)
 
 	utcMidnightDateTime_today = midnightDateTime_today.astimezone(pytz.UTC)
-	utcMidnightDateTime_tomorrow = midnightDateTime_yesterday.astimezone(pytz.UTC)
+	utcMidnightDateTime_tomorrow = midnightDateTime_tomorrow.astimezone(pytz.UTC)
 	ufSummaryDate = midnightDateTime_today
 	ufSummaryDateStr = ufSummaryDate.strftime("%d-%m-%Y")
 
 
 	print("utcMidnightDateTime_today: " + str(utcMidnightDateTime_today))
-	print("utcMidnightDateTime_yesterday: " + str(utcMidnightDateTime_yesterday))
+	print("utcMidnightDateTime_tomorrow: " + str(utcMidnightDateTime_tomorrow))
 	print("ufSummaryDate: " + str(ufSummaryDate))
 
 	# Create output file
