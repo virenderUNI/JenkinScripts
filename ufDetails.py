@@ -164,9 +164,9 @@ try:
 
 			# Get Details
 			details = getDetails(ufData, tenantCode, str(ufSummaryDateStr))
-			print(------------)
+			print("------------")
 			print(details)
-			print(------------)
+			print("------------")
 			outputFile.write(details + "\n")
 
 	except Exception as e:
