@@ -7,7 +7,7 @@ import mysql.connector
 
 tenantCode=sys.TenantCode;
 summary=sys.Summary;
-created=sys.created;
+created=sys.Created;
 
 
 def getClient(uri1, uri2):
