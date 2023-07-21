@@ -4,11 +4,17 @@ Summary=$3
 
 python3 ufDetails.py "$TenantCode" "$DetailsDated" "$Summary"
 
-ls -1 /tmp/uf-summary-* 
-reportFilename=`ls -1t /tmp/uf-details-* | head -1`
-echo "Report file: ${reportFilename}"
-
 yesterday_date=$(date -d "$DetailsDated" +'%d-%b-%Y')
+
+temp=/tmp/uf-summary-
+temp+=${yesterday_date}
+
+ls ${temp}
+
+
+
+reportFilename=`ls ${temp}`
+echo "Report file: ${reportFilename}"
 
 # MAIL_RECIPIENTS="sourabh.shrivastava@unicommerce.com,dixit.garg@unicommerce.com,ankur.pratik@unicommerce.com,ankit.jain03@unicommerce.com,bhupi@unicommerce.com,kapil@unicommerce.com,prateek.mahajan@unicommerce.com,adarsh.bajpai@unicommerce.com,rakshit.jain@unicommerce.com,oncall@unicommerce.com"
 
