@@ -5,9 +5,9 @@ from collections import Counter
 import mysql.connector
 
 
-tenantCode=sys.TenantCode;
-summary=sys.Summary;
-created=sys.Created;
+tenantCode=sys.argv[1];
+summary=sys.argv[2];
+created=sys.argv[3];
 
 
 def getClient(uri1, uri2):
