@@ -143,7 +143,7 @@ try:
 					"unfulfillableTimeStamp" : { 
 						"$gte" : utcMidnightDateTime_yesterday, 
 						"$lte" : utcMidnightDateTime_today 
-					}
+					},
 					"summary" : summary,
 			}
 			projection = {
