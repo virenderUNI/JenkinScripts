@@ -4,16 +4,16 @@ Summary=$3
 
 python3 ufDetails.py "$TenantCode" "$DetailsDated" "$Summary"
 
-yesterday_date=$(date -d "$DetailsDated" +'%d-%b-%Y')
+# yesterday_date=$(date -d "$DetailsDated" +'%d-%b-%Y')
 
-echo ${yesterday_date}
+# echo ${yesterday_date}
 
 temp=/tmp/uf-summary-
-temp+=${yesterday_date}
+temp+=${DetailsDated}
+
+echo ${temp}
 
 ls ${temp}
-
-
 
 reportFilename=`ls ${temp}`
 echo "Report file: ${reportFilename}"
