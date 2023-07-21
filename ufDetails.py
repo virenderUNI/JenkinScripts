@@ -48,12 +48,11 @@ def getDetails(ufData, tenantCode):
 	
 	if (len(ufData)>0):
 		for theDetail in ufData:
-			print(theDetail)
-			# details = details + (tenantCode + "," 
-			# 	+ theDetail["saleOrderCode"] +"," 
-			# 	+ theDetail["saleOrderItemCode"] + "," 
-			# 	+ theDetail["facilityAllocatorData.facilityCode"] + "," 
-			# 	+ theDetail["created"]+"\n")
+			details = details + (tenantCode + "," 
+				+ theDetail["saleOrderCode"] +"," 
+				+ theDetail["saleOrderItemCode"] + "," 
+				+ theDetail["facilityAllocatorData"]["facilityCode"] + "," 
+				+ theDetail["created"]+"\n")
 
 	elif (len(ufData) == 0): 
 		details = (detailsDated)
