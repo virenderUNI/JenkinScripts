@@ -49,10 +49,10 @@ def getDetails(ufData, tenantCode):
 	if (len(ufData)>0):
 		for theDetail in ufData:
 			details = details + (tenantCode + "," 
-				+ theDetail.saleOrderCode +"," 
-				+ theDetail.saleOrderItemCode + "," 
-				+ theDetail.facilityAllocatorData.facilityCode + "," 
-				+ theDetail.created+"\n")
+				+ theDetail[saleOrderCode] +"," 
+				+ theDetail[saleOrderItemCode] + "," 
+				+ theDetail[facilityAllocatorData.facilityCode] + "," 
+				+ theDetail[created]+"\n")
 
 	elif (len(ufData) == 0): 
 		details = (detailsDated)
@@ -156,12 +156,12 @@ try:
 			ufData = list(mycol.find(query, projection)) 			
 
 			# Get Details
-			details = getDetails(ufData, tenantCode)
+			# details = getDetails(ufData, tenantCode)
 			print("------------")
-			print(details)
+			# print(details)
 			print(ufData)
 			print("------------")
-			outputFile.write(details + "\n")
+			# outputFile.write(details + "\n")
 
 	except Exception as e:
 		print("Exception while calculating uf data for tenant: " + tenantCode)
