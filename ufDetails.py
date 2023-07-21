@@ -106,22 +106,20 @@ try:
 
 
 	midnightDateTime_today = datetime.datetime.strptime(detailsDated, '%d-%m-%Y')
-	midnightDateTime_yesterday = midnightDateTime_today - datetime.timedelta(days = 1)
+	midnightDateTime_tomorrow = midnightDateTime_today + datetime.timedelta(days = 1)
 
 	utcMidnightDateTime_today = midnightDateTime_today.astimezone(pytz.UTC)
-	utcMidnightDateTime_yesterday = midnightDateTime_yesterday.astimezone(pytz.UTC)
-	ufSummaryDate = datetime.date.today() - datetime.timedelta(days = 1)
+	utcMidnightDateTime_tomorrow = midnightDateTime_yesterday.astimezone(pytz.UTC)
+	ufSummaryDate = midnightDateTime_today
 	ufSummaryDateStr = ufSummaryDate.strftime("%d-%m-%Y")
 
-	totalSoiCountFromDate = ufSummaryDate.strftime("%Y-%m-%d")
-	totalSoiCountToDate = datetime.date.today().strftime("%Y-%m-%d")
 
 	print("utcMidnightDateTime_today: " + str(utcMidnightDateTime_today))
 	print("utcMidnightDateTime_yesterday: " + str(utcMidnightDateTime_yesterday))
 	print("ufSummaryDate: " + str(ufSummaryDate))
 
 	# Create output file
-	outputFileName = "/tmp/uf-details-" + ufSummaryDateStr + ".csv"
+	outputFileName = "/tmp/uf-soi-" + ufSummaryDateStr + ".csv"
 	outputFile = open(outputFileName, "w")
 	outputFile.write("TenantCode,SaleOrderCode,SaleOrderItemCode,FacilityCode,Created\n")
 
@@ -141,8 +139,8 @@ try:
 			query = {
 					"tenantCode" : tenantCode,
 					"unfulfillableTimeStamp" : { 
-						"$gte" : utcMidnightDateTime_yesterday, 
-						"$lte" : utcMidnightDateTime_today 
+						"$gte" : utcMidnightDateTime_today, 
+						"$lte" : utcMidnightDateTime_tomorrow
 					},
 					"summary" : summary,
 			}
