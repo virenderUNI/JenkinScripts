@@ -156,10 +156,10 @@ try:
 			ufData = list(mycol.find(query, projection)) 			
 
 			# Get Details
-			# details = getDetails(ufData, tenantCode)
+			details = getDetails(ufData, tenantCode)
 			print("------------")
-			# print(details)
-			print(ufData)
+			print(details)
+			# print(ufData)
 			print("------------")
 			# outputFile.write(details + "\n")
 
