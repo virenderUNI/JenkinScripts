@@ -158,10 +158,10 @@ try:
 			# Get Details
 			details = getDetails(ufData, tenantCode)
 			print("------------")
-			print(details)
+			# print(details)
 			# print(ufData)
 			print("------------")
-			# outputFile.write(details + "\n")
+			outputFile.write(details + "\n")
 
 	except Exception as e:
 		print("Exception while calculating uf data for tenant: " + tenantCode)
