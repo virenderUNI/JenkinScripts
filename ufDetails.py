@@ -49,10 +49,10 @@ def getDetails(ufData, tenantCode):
 	if (len(ufData)>0):
 		for theDetail in ufData:
 			details = details + (tenantCode + "," 
-				+ ufData.saleOrderCode +"," 
-				+ ufData.saleOrderItemCode + "," 
-				+ ufData.facilityAllocatorData.facilityCode + "," 
-				+ ufData.created+"\n")
+				+ theDetail.saleOrderCode +"," 
+				+ theDetail.saleOrderItemCode + "," 
+				+ theDetail.facilityAllocatorData.facilityCode + "," 
+				+ theDetail.created+"\n")
 
 	elif (len(ufData) == 0): 
 		details = (detailsDated)
