@@ -115,20 +115,20 @@ def getTenantSpecificMongoUri(tenantCode):
 try:
 	ufColName = "unfulfillableItemsSnapshot"
 
-	# midnightDateTime_today = datetime.datetime.today().replace(hour = 0, minute = 0, second = 0, microsecond = 0)
-	# midnightDateTime_yesterday = midnightDateTime_today - datetime.timedelta(days = 1)
+	midnightDateTime_today = datetime.datetime.today().replace(hour = 0, minute = 0, second = 0, microsecond = 0)
+	midnightDateTime_yesterday = midnightDateTime_today - datetime.timedelta(days = 1)
 
-	# utcMidnightDateTime_today = midnightDateTime_today.astimezone(pytz.UTC)
-	# utcMidnightDateTime_yesterday = midnightDateTime_yesterday.astimezone(pytz.UTC)
-	# ufSummaryDate = datetime.date.today() - datetime.timedelta(days = 1)
-	# ufSummaryDateStr = ufSummaryDate.strftime("%d-%m-%Y")
+	utcMidnightDateTime_today = midnightDateTime_today.astimezone(pytz.UTC)
+	utcMidnightDateTime_yesterday = midnightDateTime_yesterday.astimezone(pytz.UTC)
+	ufSummaryDate = datetime.date.today() - datetime.timedelta(days = 1)
+	ufSummaryDateStr = ufSummaryDate.strftime("%d-%m-%Y")
 
-	# totalSoiCountFromDate = ufSummaryDate.strftime("%Y-%m-%d")
-	# totalSoiCountToDate = datetime.date.today().strftime("%Y-%m-%d")
+	totalSoiCountFromDate = ufSummaryDate.strftime("%Y-%m-%d")
+	totalSoiCountToDate = datetime.date.today().strftime("%Y-%m-%d")
 
-	# print("utcMidnightDateTime_today: " + str(utcMidnightDateTime_today))
-	# print("utcMidnightDateTime_yesterday: " + str(utcMidnightDateTime_yesterday))
-	# print("ufSummaryDate: " + str(ufSummaryDate))
+	print("utcMidnightDateTime_today: " + str(utcMidnightDateTime_today))
+	print("utcMidnightDateTime_yesterday: " + str(utcMidnightDateTime_yesterday))
+	print("ufSummaryDate: " + str(ufSummaryDate))
 
 	# Create output file
 	outputFileName = "/tmp/uf-details-" + ufSummaryDateStr + ".csv"
