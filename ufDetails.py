@@ -42,11 +42,11 @@ def ifDetailsExists(ufData):
 
 # 	return ""
 
-# def getDetails(ufData, tenantCode, date):
-# 	# totalUFCount = len(ufData)
-# 	# totalSoiCount = int(getTotalSOICount(tenantCode))
+def getDetails(ufData, tenantCode, date):
+	# totalUFCount = len(ufData)
+	# totalSoiCount = int(getTotalSOICount(tenantCode))
 
-# 	if (ufData):
+	if (ufData):
 # 		channelIssue = Counter(tok['summary'] for tok in ufData)['CHANNEL_ISSUE']
 # 		syncTimingIssue = Counter(tok['summary'] for tok in ufData)['SYNC_TIMING_ISSUE']
 # 		operationalIssue = Counter(tok['summary'] for tok in ufData)['OPERATIONAL_ISSUE']
@@ -54,48 +54,26 @@ def ifDetailsExists(ufData):
 # 		inventoryFormulaIssue = Counter(tok['summary'] for tok in ufData)['INVENTORY_FORMULA_ISSUE']
 # 		summaryUnavailable = Counter(tok['summary'] for tok in ufData)['SUMMARY_UNAVAILABLE']
 
-# 		{
-# 	"_id" : ObjectId("64a7e57e399d7502668db78a"),
-# 	"saleOrderCode" : "Test30k1",
-# 	"saleOrderItemCode" : "TestKeshav-0-0",
-# 	"facilityAllocatorData" : {
-# 		"facilityCode" : "05"
-# 	},
-# 	"created" : ISODate("2023-07-07T10:14:22.162Z")
-# }
-
 # 		if (totalSoiCount != 0):
 # 			ufPercentage = round(((float(totalUFCount) / totalSoiCount) * 100), 3);
 # 			nonOpsUf = channelIssue + syncTimingIssue + summaryUnavailable
 # 			nonOpsUfPercentage = round(((float(nonOpsUf) / totalSoiCount) * 100), 3);
 
-# 		summary = (tenantCode + "," 
-# 			+ getTenantCategory(tenantCode) + "," 
-# 			+ str(totalSoiCount) + "," 
-# 			+ str(totalUFCount) + "," 
-# 			+ str(ufPercentage) + "," 
-# 			+ str(nonOpsUfPercentage) + "," 
-# 			+ str(channelIssue) + "," 
-# 			+ str(syncTimingIssue) + "," 
-# 			+ str(operationalIssue) + "," 
-# 			+ str(facilityMappingIssue) + "," 
-# 			+ str(inventoryFormulaIssue) + "," 
-# 			+ str(summaryUnavailable) + "," 
-# 			+ str(date))
+		details = (tenantCode + "," 
+			+ ufData.saleOrderCode +"," 
+			+ ufData.saleOrderItemCode + "," 
+			+ ufData.facilityAllocatorData.facilityCode + "," 
+			+ ufData.created)
 
-# 	# elif (len(ufData) == 0): 
-# 	# 	details = (str(date))
+	elif (len(ufData) == 0): 
+		details = (str(date))
 
-# 	# else:
-# 	# 	print("ufData length: " + str(len(ufData)))
-# 	# 	summary = (tenantCode + "," 
-# 	# 		+ getTenantCategory(tenantCode) + "," 
-# 	# 		+ str(totalSoiCount) + "," 
-# 	# 		+ str(totalUFCount) + "," 
-# 	# 		+ ",,,,,,,," 
-# 	# 		+ str(date))
+	else:
+		print("ufData length: " + str(len(ufData)))
+		details = (tenantCode + "," 
+			 + ","  + "," + "," )
 
-# 	return summary
+	return details;
 
 
 def getServerNameFromTenant(tenantCode):
@@ -137,20 +115,20 @@ def getTenantSpecificMongoUri(tenantCode):
 try:
 	ufColName = "unfulfillableItemsSnapshot"
 
-	midnightDateTime_today = datetime.datetime.today().replace(hour = 0, minute = 0, second = 0, microsecond = 0)
-	midnightDateTime_yesterday = midnightDateTime_today - datetime.timedelta(days = 1)
+	# midnightDateTime_today = datetime.datetime.today().replace(hour = 0, minute = 0, second = 0, microsecond = 0)
+	# midnightDateTime_yesterday = midnightDateTime_today - datetime.timedelta(days = 1)
 
-	utcMidnightDateTime_today = midnightDateTime_today.astimezone(pytz.UTC)
-	utcMidnightDateTime_yesterday = midnightDateTime_yesterday.astimezone(pytz.UTC)
-	ufSummaryDate = datetime.date.today() - datetime.timedelta(days = 1)
-	ufSummaryDateStr = ufSummaryDate.strftime("%d-%m-%Y")
+	# utcMidnightDateTime_today = midnightDateTime_today.astimezone(pytz.UTC)
+	# utcMidnightDateTime_yesterday = midnightDateTime_yesterday.astimezone(pytz.UTC)
+	# ufSummaryDate = datetime.date.today() - datetime.timedelta(days = 1)
+	# ufSummaryDateStr = ufSummaryDate.strftime("%d-%m-%Y")
 
-	totalSoiCountFromDate = ufSummaryDate.strftime("%Y-%m-%d")
-	totalSoiCountToDate = datetime.date.today().strftime("%Y-%m-%d")
+	# totalSoiCountFromDate = ufSummaryDate.strftime("%Y-%m-%d")
+	# totalSoiCountToDate = datetime.date.today().strftime("%Y-%m-%d")
 
-	print("utcMidnightDateTime_today: " + str(utcMidnightDateTime_today))
-	print("utcMidnightDateTime_yesterday: " + str(utcMidnightDateTime_yesterday))
-	print("ufSummaryDate: " + str(ufSummaryDate))
+	# print("utcMidnightDateTime_today: " + str(utcMidnightDateTime_today))
+	# print("utcMidnightDateTime_yesterday: " + str(utcMidnightDateTime_yesterday))
+	# print("ufSummaryDate: " + str(ufSummaryDate))
 
 	# Create output file
 	outputFileName = "/tmp/uf-details-" + ufSummaryDateStr + ".csv"
@@ -185,9 +163,11 @@ try:
 			ufData = list(mycol.find(query, projection)) 			
 
 			# Get Details
-			# details = getDetails(ufData, tenantCode, str(ufSummaryDateStr))
-			print(ufData)
-			outputFile.write(ufData + "\n")
+			details = getDetails(ufData, tenantCode, str(ufSummaryDateStr))
+			print(------------)
+			print(details)
+			print(------------)
+			outputFile.write(details + "\n")
 
 	except Exception as e:
 		print("Exception while calculating uf data for tenant: " + tenantCode)
