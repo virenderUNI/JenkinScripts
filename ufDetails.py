@@ -6,8 +6,12 @@ import mysql.connector
 
 
 tenantCode=sys.argv[1];
-summary=sys.argv[2];
-created=sys.argv[3];
+created=sys.argv[2];
+summary=sys.argv[3];
+
+print(tenantCode)
+print(summary)
+print(created)
 
 
 def getClient(uri1, uri2):
@@ -186,7 +190,7 @@ try:
 			outputFile.write(ufData + "\n")
 
 	except Exception as e:
-		print("Exception while calculating uf data for tenant: " + tenant['code'])
+		print("Exception while calculating uf data for tenant: " + tenantCode)
 		print(e)
 
 except Exception as e:
