@@ -105,7 +105,7 @@ try:
 	ufColName = "unfulfillableItemsSnapshot"
 
 
-	midnightDateTime_today = datetime.strptime(detailsDated, '%d-%m-%Y').isoformat()
+	midnightDateTime_today = datetime.datetime.strptime(detailsDated, '%d-%m-%Y')
 	midnightDateTime_yesterday = midnightDateTime_today - datetime.timedelta(days = 1)
 
 	utcMidnightDateTime_today = midnightDateTime_today.astimezone(pytz.UTC)
