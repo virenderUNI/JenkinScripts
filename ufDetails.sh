@@ -10,6 +10,7 @@ python3 ufDetails.py "$TenantCode" "$DetailsDated" "$Summary"
 
 temp=/tmp/uf-soiDetails-
 temp+=${DetailsDated}
+temp+='.csv'
 
 echo ${temp}
 
