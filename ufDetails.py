@@ -48,12 +48,12 @@ def getDetails(ufData, tenantCode):
 	
 	if (len(ufData)>0):
 		for theDetail in ufData:
+			unfTS=theDetail["unfulfillableTimeStamp"].strftime("%d/%m/%Y")
 			details = details + (tenantCode + "," 
 				+ theDetail["saleOrderCode"] +"," 
 				+ theDetail["saleOrderItemCode"] + "," 
 				+ theDetail["facilityAllocatorData"]["facilityCode"] + "," 
-				+ theDetail["unfulfillableTimeStamp"]+"\n")
-
+				+ unfTS+"\n")
 	elif (len(ufData) == 0): 
 		details = (detailsDated)
 
