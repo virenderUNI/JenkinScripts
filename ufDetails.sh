@@ -1,5 +1,8 @@
+TenantCode=$1
+DetailsDated=$2
+Summary=$3
 
-python3 ufDetails.py $1 $2 $3
+python3 ufDetails.py "$TenantCode" "$DetailsDated" "$Summary"
 
 ls -1 /tmp/uf-summary-* 
 reportFilename=`ls -1t /tmp/uf-details-* | head -1`

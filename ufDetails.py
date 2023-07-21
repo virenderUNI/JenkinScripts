@@ -6,12 +6,12 @@ import mysql.connector
 
 
 tenantCode=sys.argv[1];
-created=sys.argv[2];
+detailsDated=sys.argv[2];
 summary=sys.argv[3];
 
 print(tenantCode)
 print(summary)
-print(created)
+print(detailsDated)
 
 
 def getClient(uri1, uri2):
@@ -43,30 +43,19 @@ def ifDetailsExists(ufData):
 # 	return ""
 
 def getDetails(ufData, tenantCode):
-	# totalUFCount = len(ufData)
-	# totalSoiCount = int(getTotalSOICount(tenantCode))
 
-	if (ufData):
-# 		channelIssue = Counter(tok['summary'] for tok in ufData)['CHANNEL_ISSUE']
-# 		syncTimingIssue = Counter(tok['summary'] for tok in ufData)['SYNC_TIMING_ISSUE']
-# 		operationalIssue = Counter(tok['summary'] for tok in ufData)['OPERATIONAL_ISSUE']
-# 		facilityMappingIssue = Counter(tok['summary'] for tok in ufData)['FACILITY_MAPPING_ISSUE']
-# 		inventoryFormulaIssue = Counter(tok['summary'] for tok in ufData)['INVENTORY_FORMULA_ISSUE']
-# 		summaryUnavailable = Counter(tok['summary'] for tok in ufData)['SUMMARY_UNAVAILABLE']
-
-# 		if (totalSoiCount != 0):
-# 			ufPercentage = round(((float(totalUFCount) / totalSoiCount) * 100), 3);
-# 			nonOpsUf = channelIssue + syncTimingIssue + summaryUnavailable
-# 			nonOpsUfPercentage = round(((float(nonOpsUf) / totalSoiCount) * 100), 3);
-
-		details = (tenantCode + "," 
-			+ ufData.saleOrderCode +"," 
-			+ ufData.saleOrderItemCode + "," 
-			+ ufData.facilityAllocatorData.facilityCode + "," 
-			+ ufData.created)
+	details=""
+	
+	if (len(ufData)>0):
+		for theDetail in ufData:
+			details = details + (tenantCode + "," 
+				+ ufData.saleOrderCode +"," 
+				+ ufData.saleOrderItemCode + "," 
+				+ ufData.facilityAllocatorData.facilityCode + "," 
+				+ ufData.created+"\n")
 
 	elif (len(ufData) == 0): 
-		details = (str(date))
+		details = (detailsDated)
 
 	else:
 		print("ufData length: " + str(len(ufData)))
@@ -115,7 +104,8 @@ def getTenantSpecificMongoUri(tenantCode):
 try:
 	ufColName = "unfulfillableItemsSnapshot"
 
-	midnightDateTime_today = datetime.datetime.today().replace(hour = 0, minute = 0, second = 0, microsecond = 0)
+
+	midnightDateTime_today = datetime.strptime(detailsDated, '%d-%m-%Y').isoformat()
 	midnightDateTime_yesterday = midnightDateTime_today - datetime.timedelta(days = 1)
 
 	utcMidnightDateTime_today = midnightDateTime_today.astimezone(pytz.UTC)
@@ -150,14 +140,17 @@ try:
 			# Get ufData
 			query = {
 					"tenantCode" : tenantCode,
-					"created" : created,
+					"unfulfillableTimeStamp" : { 
+						"$gte" : utcMidnightDateTime_yesterday, 
+						"$lte" : utcMidnightDateTime_today 
+					}
 					"summary" : summary,
 			}
 			projection = {
 				"saleOrderItemCode":1,
 				"facilityAllocatorData.facilityCode":1,
 				"saleOrderCode":1,
-				"created":1
+				"unfulfillableTimeStamp":1
 			}
 
 			ufData = list(mycol.find(query, projection)) 			
@@ -166,6 +159,7 @@ try:
 			details = getDetails(ufData, tenantCode)
 			print("------------")
 			print(details)
+			print(ufData)
 			print("------------")
 			outputFile.write(details + "\n")
 
