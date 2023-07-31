@@ -53,7 +53,7 @@ def getDetails(ufData, tenantCode):
 				+ theDetail["saleOrderCode"] +"," 
 				+ theDetail["saleOrderItemCode"] + "," 
 				+ theDetail["facilityAllocatorData"]["facilityCode"] + "," 
-				+ unfTS+"\n")
+				+ unfTS+summary+"\n")
 	elif (len(ufData) == 0): 
 		details = (detailsDated)
 
@@ -121,7 +121,7 @@ try:
 	# Create output file
 	outputFileName = "/tmp/uf-soiDetails-" + detailsDated + ".csv"
 	outputFile = open(outputFileName, "w")
-	outputFile.write("TenantCode,SaleOrderCode,SaleOrderItemCode,FacilityCode,Created\n")
+	outputFile.write("TenantCode,SaleOrderCode,SaleOrderItemCode,FacilityCode,Summary,Created\n")
 
 	# For specified tenant only
 	try:
