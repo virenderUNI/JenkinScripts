@@ -26,7 +26,7 @@ MAIL_RECIPIENTS+=$4
 
 echo ${MAIL_RECIPIENTS}
 
-MAIL_SUBJECT="Unfulfillable Sale Order Details | ${temp}"
+MAIL_SUBJECT="Unfulfillable Sale Order Item Details"
 MAIL_CONTENT="Please find the attachment. Report prepared by alpha team"
 
 echo ${MAIL_CONTENT} | mutt -s "${MAIL_SUBJECT}" -a "${reportFilename}" -- "${MAIL_RECIPIENTS}"
