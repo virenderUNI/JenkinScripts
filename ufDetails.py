@@ -137,14 +137,25 @@ try:
 			mycol = mydb[ufColName]
 
 			# Get ufData
-			query = {
+			if summary == "ALL":
+				query = {
+						"tenantCode" : tenantCode,
+						"unfulfillableTimeStamp" : { 
+							"$gte" : utcMidnightDateTime_today, 
+							"$lte" : utcMidnightDateTime_tomorrow
+						}
+					}
+			else:
+				query = {
 					"tenantCode" : tenantCode,
 					"unfulfillableTimeStamp" : { 
 						"$gte" : utcMidnightDateTime_today, 
 						"$lte" : utcMidnightDateTime_tomorrow
 					},
 					"summary" : summary,
-			}
+				}
+			
+			
 			projection = {
 				"saleOrderItemCode":1,
 				"facilityAllocatorData.facilityCode":1,
