@@ -53,7 +53,7 @@ def getDetails(ufData, tenantCode):
 				+ theDetail["saleOrderCode"] +"," 
 				+ theDetail["saleOrderItemCode"] + "," 
 				+ theDetail["facilityAllocatorData"]["facilityCode"] + ","
-				+summary+","
+				+ theDetail["summary"]+","
 				+ unfTS+"\n")
 	elif (len(ufData) == 0): 
 		details = (detailsDated)
@@ -160,7 +160,8 @@ try:
 				"saleOrderItemCode":1,
 				"facilityAllocatorData.facilityCode":1,
 				"saleOrderCode":1,
-				"unfulfillableTimeStamp":1
+				"unfulfillableTimeStamp":1,
+				"summary":1
 			}
 
 			ufData = list(mycol.find(query, projection)) 			
