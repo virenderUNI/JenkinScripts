@@ -38,7 +38,7 @@ def getDetails(failedOrdersData, tenantCode):
 				+ theDetail["request"]["saleOrder"]["transactionId"] +"," 
 				+ theDetail["code"] + "," 
 				+ theDetail["tenantCode"] + ","
-				+ theDetail["response"]["errors"]["description"] + ","
+				+ theDetail["response"]["errors"][0]["description"] + ","
 				+ failedOrderCreatedTimeStamp+"\n")
 	elif (len(failedOrdersData) == 0): 
 		details = (detailsDated)
