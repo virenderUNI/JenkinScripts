@@ -1,7 +1,7 @@
 TenantCodes=$1
 DetailsDated=$2
 Recipient=$3
-python3 ufDetails.py "$TenantCodes" "$DetailsDated"
+python3 failedOrdersTataCliq.py "$TenantCodes" "$DetailsDated"
 
 # yesterday_date=$(date -d "$DetailsDated" +'%d-%b-%Y')
 
