@@ -34,7 +34,6 @@ def getDetails(failedOrdersData, tenantCode):
 		for theDetail in failedOrdersData:
 			failedOrderCreatedTimeStamp=theDetail["created"].strftime("%d/%m/%Y")
 			details = details + (theDetail["request"]["saleOrder"]["displayOrderCode"] +"," 
-				+ theDetail["code"] + "," 
 				+ theDetail["tenantCode"] + ","
 				+ theDetail["request"]["saleOrder"]["channel"] +","
 				+ theDetail["response"]["errors"][0]["message"] + ","
@@ -107,7 +106,7 @@ try:
 	# Create output file
 	outputFileName = "/tmp/tataCliq-failedSaleOrders-" + detailsDated + ".csv"
 	outputFile = open(outputFileName, "w")
-	outputFile.write("OrderID,SellerID,TenantID,ChannelCode,ErrorMessage,ErrorMessageSummary,FailureTimeStamp\n")
+	outputFile.write("OrderID,TenantID,ChannelCode,ErrorMessage,ErrorMessageSummary,FailureTimeStamp\n")
 
 	# For specified tenant only
 	for tenantCode in tenantCodes.split(","):
@@ -138,7 +137,6 @@ try:
 				
 				projection = {
 					"request.saleOrder.displayOrderCode":1,
-					"code":1,
 					"tenantCode":1,
 					"request.saleOrder.channel":1,
 					"response.errors.message":1,
