@@ -145,7 +145,8 @@ try:
 					"created":1
 				}
 
-				failedOrdersData = list(mycol.find(query, projection)) 			
+				failedOrdersData = list(mycol.find(query, projection))
+				print(str(failedOrdersData))
 
 				# Get Details
 				details = getDetails(failedOrdersData, tenantCode)
