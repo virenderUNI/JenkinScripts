@@ -139,7 +139,7 @@ try:
 				projection = {
 					"request.saleOrder.displayOrderCode":1,
 					"request.saleOrder.transactionId":1,
-					"saleOrderCode":1,
+					"code":1,
 					"tenantCode":1,
 					"response.errors.description":1,
 					"created":1
