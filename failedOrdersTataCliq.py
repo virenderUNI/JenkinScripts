@@ -92,7 +92,7 @@ try:
 
 
 	midnightDateTime_today = datetime.datetime.strptime(detailsDated, '%d-%m-%Y')
-	midnightDateTime_backDays = midnightDateTime_today - datetime.timedelta(days = 15)
+	midnightDateTime_backDays = midnightDateTime_today - datetime.timedelta(days = 30)
 
 	utcMidnightDateTime_today = midnightDateTime_today.astimezone(pytz.UTC)
 	utcMidnightDateTime_backDays = midnightDateTime_backDays.astimezone(pytz.UTC)
