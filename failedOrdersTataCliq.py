@@ -126,7 +126,7 @@ try:
 				query = {
 						"tenantCode" : tenantCode,
 						"request.saleOrder.channel":{
-							"$regex" : "SHOPIFY"
+							"$regex" : "TATACLIQ"
 						},
 						"created" : { 
 							"$gte" : utcMidnightDateTime_backDays, 
