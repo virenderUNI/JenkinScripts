@@ -14,15 +14,15 @@ print(detailsDated)
 
 def getClient(uri1, uri2):
 	try:
-	    c = MongoClient(uri1, 27017)
+		c = MongoClient(uri1, 27017)
 		db= c['uniwareConfig']
-	    db.test.insert_one({})
-	    print(str(uri1))
+		db.test.insert_one({})
+		print(str(uri1))
 	except:
-	    c = MongoClient(uri2, 27017)
-	    print(str(uri2) + " - common changed")
-
+		c = MongoClient(uri2, 27017)
+		print(str(uri2) + " - common changed")
 	return c
+
 
 
 
