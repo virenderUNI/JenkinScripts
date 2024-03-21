@@ -140,7 +140,7 @@ try:
 					"request.saleOrder.displayOrderCode":1,
 					"code":1,
 					"tenantCode":1,
-					"request.saleOrder.displayOrderCode":1,
+					"request.saleOrder.channel":1,
 					"response.errors.message":1,
 					"response.errors.description":1,
 					"created":1
