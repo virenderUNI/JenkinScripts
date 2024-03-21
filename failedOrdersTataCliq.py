@@ -36,7 +36,7 @@ def getDetails(failedOrdersData, tenantCode):
 			details = details + (tenantCode + "," 
 				+ theDetail["request"]["saleOrder"]["displayOrderCode"] +"," 
 				+ theDetail["request"]["saleOrder"]["transactionId"] +"," 
-				+ theDetail["saleOrderCode"] + "," 
+				+ theDetail["code"] + "," 
 				+ theDetail["tenantCode"] + ","
 				+ theDetail["response"]["errors"]["description"] + ","
 				+ failedOrderCreatedTimeStamp+"\n")
