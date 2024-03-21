@@ -33,7 +33,7 @@ def getDetails(failedOrdersData, tenantCode):
 	if (len(failedOrdersData)>0):
 		for theDetail in failedOrdersData:
 			failedOrderCreatedTimeStamp=theDetail["created"].strftime("%d/%m/%Y")
-			details = details + (tenantCode + "," 
+			details = details + (
 				+ theDetail["request"]["saleOrder"]["displayOrderCode"] +"," 
 				+ theDetail["request"]["saleOrder"]["transactionId"] +"," 
 				+ theDetail["code"] + "," 
