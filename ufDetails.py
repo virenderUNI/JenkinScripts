@@ -123,7 +123,7 @@ try:
 	# Create output file
 	outputFileName = "/tmp/uf-soiDetails-" + detailsDated + ".csv"
 	outputFile = open(outputFileName, "w")
-	outputFile.write("TenantCode,SaleOrderCode,SaleOrderItemCode,FacilityCode,Summary,Created\n")
+	outputFile.write("TenantCode,SaleOrderCode,SaleOrderItemCode,FacilityCode,ChannelSourceCode,Summary,Created\n")
 
 	# For specified tenant only
 	try:
