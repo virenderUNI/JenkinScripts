@@ -53,6 +53,7 @@ def getDetails(ufData, tenantCode):
 				+ theDetail["saleOrderCode"] +"," 
 				+ theDetail["saleOrderItemCode"] + "," 
 				+ theDetail["facilityAllocatorData"]["facilityCode"] + ","
+				+ theDetail["channelSourceCode"]+","
 				+ theDetail["summary"]+","
 				+ unfTS+"\n")
 	elif (len(ufData) == 0): 
@@ -161,6 +162,7 @@ try:
 				"facilityAllocatorData.facilityCode":1,
 				"saleOrderCode":1,
 				"unfulfillableTimeStamp":1,
+				"channelSourceCode":1,
 				"summary":1
 			}
 
