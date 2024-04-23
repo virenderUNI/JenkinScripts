@@ -6,10 +6,9 @@ import mysql.connector
 
 
 tenantCodes=sys.argv[1]
-detailsDated=sys.argv[2]
 
+detailsDated = datetime.datetime.now().strftime('%d-%m-%Y')
 print(tenantCodes)
-print(detailsDated)
 
 
 def getClient(uri1, uri2):
