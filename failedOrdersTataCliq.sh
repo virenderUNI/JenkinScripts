@@ -1,5 +1,5 @@
 TenantCodes=$1
-DetailsDated=$2
+DetailsDated=$(date +'%d-%m-%Y')
 Recipient=$3
 python3 failedOrdersTataCliq.py "$TenantCodes" "$DetailsDated"
 
