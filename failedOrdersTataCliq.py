@@ -90,8 +90,8 @@ try:
 	failedOrderColName = "saleOrder"
 
 
-	midnightDateTime_today = datetime.datetime.now().strftime('%d-%m-%Y')
-	midnightDateTime_backDays = midnightDateTime_today - datetime.timedelta(days = 1)
+	midnightDateTime_today = datetime.datetime.now()
+	midnightDateTime_backDays = midnightDateTime_today - datetime.timedelta(days=1)
 
 	utcMidnightDateTime_today = midnightDateTime_today.astimezone(pytz.UTC)
 	utcMidnightDateTime_backDays = midnightDateTime_backDays.astimezone(pytz.UTC)
