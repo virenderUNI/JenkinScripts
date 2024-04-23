@@ -8,6 +8,7 @@ import mysql.connector
 tenantCodes=sys.argv[1]
 
 detailsDated = datetime.datetime.now().strftime('%d-%m-%Y')
+print(detailsDated)
 print(tenantCodes)
 
 
